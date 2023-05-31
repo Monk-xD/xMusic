@@ -52,6 +52,18 @@ from FallenMusic.Helpers.inline import (
     pm_buttons,
 )
 
+@app.on_callback_query(filters.regex("GetTimer"))
+
+async def quite_timer(client, CallbackQuery: CallbackQuery):
+
+    try:
+
+        await CallbackQuery.answer()
+
+    except:
+
+        pass
+
 
 @app.on_callback_query(filters.regex("forceclose"))
 async def close_(_, CallbackQuery):
