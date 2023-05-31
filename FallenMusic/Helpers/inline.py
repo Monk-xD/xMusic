@@ -19,11 +19,78 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
+from pyrogram.types import Message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-
+from typing import Union
 import config
 from FallenMusic import BOT_USERNAME
+
+
+
+
+def time_to_seconds(time):
+
+    stringt = str(time)
+
+    return sum(
+
+        int(x) * 60**i
+
+        for i, x in enumerate(reversed(stringt.split(":")))
+
+    )
+
+def stream_markup_timer(_, videoid, chat_id, played, dur):
+
+    played_sec = time_to_seconds(played)
+
+    duration_sec = time_to_seconds(dur)
+
+    percentage = (played_sec / duration_sec) * 100
+
+    zenitsu = math.floor(percentage)
+
+    if 0 < zenitsu <= 10:
+
+        bar = "◉—————————"
+
+    elif 10 < zenitsu < 20:
+
+        bar = "—◉————————"
+
+    elif 20 <= zenitsu < 30:
+
+        bar = "——◉———————"
+
+    elif 30 <= zenitsu < 40:
+
+        bar = "———◉——————"
+
+    elif 40 <= zenitsu < 50:
+
+        bar = "————◉—————"
+
+    elif 50 <= zenitsu < 60:
+
+        bar = "—————◉————"
+
+    elif 60 <= zenitsu < 70:
+
+        bar = "——————◉———"
+
+    elif 70 <= zenitsu < 80:
+
+        bar = "———————◉——"
+
+    elif 80 <= zenitsu < 95:
+
+        bar = "————————◉—"
+
+    else:
+
+        bar = "—————————◉"
+        
+        
 
 close_key = InlineKeyboardMarkup(
     [[InlineKeyboardButton(text="✯ ᴄʟᴏsᴇ ✯", callback_data="close")]]
