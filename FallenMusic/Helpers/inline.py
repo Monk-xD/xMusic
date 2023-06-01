@@ -104,7 +104,7 @@ buttons = InlineKeyboardMarkup(
 
             InlineKeyboardButton(
 
-                text=f"{played} {bar} {dur}",
+                text=f"{bar}",
 
                 callback_data="GetTimer",
 
